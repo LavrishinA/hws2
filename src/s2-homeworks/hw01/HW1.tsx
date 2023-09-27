@@ -14,28 +14,38 @@ import avatar from './avatar.png'
 * */
 
 // нужно создать правильный тип вместо any
-export type MessageType = any
+export type MessageDataType = {
+    id: number
+    user: {
+        avatar: string
+        name: string
+    }
+    message: {
+        text: string
+        time: string
+    }
+}
 
 // структуру объекта не менять
-export const message0: MessageType = {
+export const message0: MessageDataType = {
     id: 0,
     user: {
-        avatar: avatar, // можно менять
-        name: 'Some Name',  // можно менять
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8xSo7jTSzZs4up5EIK5WFahpYYphVojJbmqOSKxwp5mq1pYMYwV3LJY7S5kOXuC3vsOU&usqp=CAU", // можно менять
+        name: 'Billy',  // можно менять
     },
     message: {
-        text: 'some textsome textsome textsome textsome textsome textsome text', // можно менять
+        text: 'Hello, how are you?', // можно менять
         time: '22:00', // можно менять
     },
 }
-export const friendMessage0: MessageType = {
+export const friendMessage0: MessageDataType = {
     id: 100,
     user: {
-        avatar: avatar, // можно менять
-        name: 'Friend Name', // можно менять
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHbRzrv47gqZafyEly4QgNKoHcOPSuHYqp-g&usqp=CAU", // можно менять
+        name: 'Carl', // можно менять
     },
     message: {
-        text: 'зеркальное сообщение для тренировки css', // можно менять
+        text: 'I am fine! and you?', // можно менять
         time: '22:00', // можно менять
     },
 }
@@ -47,12 +57,12 @@ const HW1 = () => {
             <div className={s2.hw}>
                 {/*проверка отображения (не менять)*/}
                 <div>
-                    <Message message={message0} />
-                    <FriendMessage message={friendMessage0} />
+                    <Message message={message0}/>
+                    <FriendMessage message={friendMessage0}/>
                 </div>
 
                 {/*для автоматической проверки дз (не менять)*/}
-                <MessageSender M={Message} />
+                <MessageSender M={Message}/>
             </div>
         </div>
     )

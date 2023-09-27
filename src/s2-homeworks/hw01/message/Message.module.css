@@ -1,31 +1,64 @@
 .message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    padding: 8px 16px;
+
+    font-family: Montserrat;
 
 }
 
 .imageAndText {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+    color: #FFF;
 
 }
 
 .imageAndText img {
-
+    max-width: 48px;
+    height: 48px;
+    border-radius: 50%;
 }
 
 .text {
-
+    font-size: 18px;
+    padding: 7px 14px;
+    background-color: #06C;
+    border-radius: 10px 10px 0 10px;
+    position: relative;
 }
 
 .text:after {
-
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateX(95%);
+    width: 16px;
+    height: 12px;
+    background-color: #06C;
+    clip-path: polygon(0 0, 100% 100%, 0% 100%);
 }
 
 .name {
-
+    text-align: right;
+    font-weight: 600;
 }
 
 .messageText {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
 
+    text-align: left;
 }
 
 .time {
-
+    font-size: 10px;
+    margin-right: 10px;
 }

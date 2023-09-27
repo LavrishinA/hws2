@@ -1,11 +1,17 @@
 .App {
     --header_height: 60px;
+
 }
 
 .hw {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    border: 2px solid #D9D9D9;
+    border-radius: 5px;
 
 }
 
 .hwTitle {
-
+    text-align: center;
 }
