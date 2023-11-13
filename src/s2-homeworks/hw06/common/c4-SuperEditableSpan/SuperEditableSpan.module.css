@@ -1,11 +1,22 @@
 .spanBlock {
+    display: flex;
+    align-items: flex-end;
+    align-items: center;
+    justify-content: start;
+    font-size: 1.6rem;
 }
 
 .span {
+    color: #0080FF;
 }
 
 .input {
 }
 
 .pen {
+}
+
+img {
+    width: 1.6rem;
+    height: 1.6rem;
 }
