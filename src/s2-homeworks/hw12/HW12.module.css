@@ -19,5 +19,6 @@ html {
 }
 
 .select {
-
+    background-color: var(--background);
+    margin: 8px 16px;
 }
