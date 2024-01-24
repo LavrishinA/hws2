@@ -1,22 +1,39 @@
 .buttonsContainer {
+    display: flex;
+    gap: 1rem;
 }
 
 .responseContainer {
+    display: flex;
+    justify-content: center;
 }
 
 .imageContainer {
+    width: 50%;
 }
 
 .image {
+    width: 100%;
+    height: 100%
 }
 
-.textContainer{
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    width: 50%;
 }
 
 .code {
+    font-size: 3rem;
 }
 
 .text {
+    font-size: 1.6rem;
 }
+
 .info {
+    font-size: 1.6rem;
 }

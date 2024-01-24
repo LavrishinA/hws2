@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW13.module.css'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
-import axios from 'axios'
+import axios, {AxiosError, AxiosResponse} from 'axios'
 import success200 from './images/200.svg'
 import error400 from './images/400.svg'
 import error500 from './images/500.svg'
@@ -13,6 +13,18 @@ import errorUnknown from './images/error.svg'
 * 2 - дизэйблить кнопки пока идёт запрос
 * 3 - сделать стили в соответствии с дизайном
 * */
+export type Response = {
+    errorText: string
+    info: string
+    yourBody: {
+        success: boolean
+    }
+    yourQuery: {}
+}
+type Payload = {
+    success: true | false | null | undefined
+}
+
 
 const HW13 = () => {
     const [code, setCode] = useState('')
@@ -32,16 +44,36 @@ const HW13 = () => {
         setInfo('...loading')
 
         axios
-            .post(url, {success: x})
+            .post<Response, AxiosResponse<Response>, Payload>(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
                 // дописать
+                setText(`${res.data.errorText}`)
+                setInfo(`${res.data.info}`)
 
             })
-            .catch((e) => {
+            .catch((e: AxiosError<Response>) => {
                 // дописать
-
+                switch (e.response?.status) {
+                    case 500:
+                        setCode(`Код ${e.response.status}!`)
+                        setImage(error500)
+                        setText(`${e.response?.data.errorText}`)
+                        setInfo(`${e.response?.data.info}`)
+                        break
+                    case 400:
+                        setCode(`Код ${e.response.status}!`)
+                        setImage(error400)
+                        setText(`${e.response?.data.errorText}`)
+                        setInfo(`${e.response?.data.info}`)
+                        break
+                    default:
+                        setCode('Error!')
+                        setText(e.message)
+                        setInfo(e.name)
+                        setImage(errorUnknown)
+                }
             })
     }
 
@@ -56,7 +88,7 @@ const HW13 = () => {
                         onClick={send(true)}
                         xType={'secondary'}
                         // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send true
                     </SuperButton>
@@ -65,7 +97,7 @@ const HW13 = () => {
                         onClick={send(false)}
                         xType={'secondary'}
                         // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send false
                     </SuperButton>
@@ -74,7 +106,7 @@ const HW13 = () => {
                         onClick={send(undefined)}
                         xType={'secondary'}
                         // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send undefined
                     </SuperButton>
@@ -83,7 +115,7 @@ const HW13 = () => {
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
                         // дописать
-
+                        disabled={info === '...loading'}
                     >
                         Send null
                     </SuperButton>
